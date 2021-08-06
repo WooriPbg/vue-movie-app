@@ -103,6 +103,9 @@ export default {
         });
       }
     },
+    // sampleAction(context, payload) {
+    //   const { state, getters, commit, dispatch } = context;
+    // },
   },
 };
 

@@ -12,18 +12,18 @@
           <div class="skeleton etc"></div>
         </div>
       </div>
-      <Loader 
+      <Loader
         :size="3"
         :z-index="9"
         fixed />
     </template>
-    <div 
-      v-else 
+    <div
+      v-else
       class="movie-details">
-      <div 
-        :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})` }" 
+      <div
+        :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})` }"
         class="poster">
-        <Loader 
+        <Loader
           v-if="imageLoading"
           absolute />
       </div>
@@ -47,7 +47,7 @@
               :key="name"
               :title="name"
               class="rating">
-              <img 
+              <img
                 :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
                 :alt="name" />
               <span>{{ score }}</span>
@@ -78,43 +78,42 @@
 <script>
 import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
-
 export default {
-  components: { 
-    Loader 
-    },
-    data() {
-      return {
-        imageLoading: true
-      }
-    },
-    computed:{
-      ...mapState('movie', [
-        'theMovie',
-        'loading'
-      ])
-    },
+  components: {
+    Loader
+  },
+  data() {
+    return {
+      imageLoading: true
+    }
+  },
+  computed: {
+    ...mapState('movie', [
+      'loading',
+      'theMovie'
+    ])
+  },
   created() {
-    // console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
-      // movie/tt123762
       id: this.$route.params.id
     })
   },
   methods: {
     requestDiffSizeImage(url, size = 700) {
+      // 잘못된 URL(Poster)인 경우.
       if (!url || url === 'N/A') {
-        this.imageLoading = false;
-        return '';
+        this.imageLoading = false
+        return ''
       }
       const src = url.replace('SX300', `SX${size}`)
+      // 정상적인 URL인 경우.
       this.$loadImage(src)
         .then(() => {
           this.imageLoading = false
         })
       return src
     }
-  },
+  }
 }
 </script>
 
@@ -127,7 +126,7 @@ export default {
   .poster {
     flex-shrink: 0;
     width: 500px;
-    height: 500px * 3 /2;
+    height: 500px * 3/2;
     margin-right: 70px;
   }
   .specs {
@@ -161,21 +160,21 @@ export default {
   display: flex;
   color: $gray-600;
   .poster {
-    flex-shrink: 0;
     width: 500px;
-    height: 500px * 3 / 2;
+    height: 500px * 3/2;
     margin-right: 70px;
     border-radius: 10px;
     background-color: $gray-200;
     background-size: cover;
     background-position: center;
     position: relative;
+    flex-shrink: 0;
   }
   .specs {
     flex-grow: 1;
     .title {
       color: $black;
-      font-family: 'Oswald', sans-serif;
+      font-family: "Oswald", sans-serif;
       font-size: 70px;
       line-height: 1;
       margin-bottom: 30px;
@@ -210,8 +209,8 @@ export default {
         }
       }
     }
-    .h3 {
-      margin: 20px 0 6px;
+    h3 {
+      margin: 24px 0 6px;
       color: $black;
       font-family: "Oswald", sans-serif;
       font-size: 20px;
@@ -220,7 +219,7 @@ export default {
   @include media-breakpoint-down(xl) {
     .poster {
       width: 300px;
-      height: 300px * 3 /2;
+      height: 300px * 3/2;
       margin-right: 40px;
     }
   }
@@ -232,7 +231,7 @@ export default {
   }
   @include media-breakpoint-down(md) {
     .specs {
-      title {
+      .title {
         font-size: 50px;
       }
       .ratings {

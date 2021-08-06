@@ -2,11 +2,11 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
-      <div 
+      <div
         v-for="nav in navigations"
         :key="nav.name"
         class="nav-item">
-        <RouterLink 
+        <RouterLink
           :to="nav.href"
           active-class="active"
           :class="{ active: isMatch(nav.path) }"
@@ -15,11 +15,11 @@
         </RouterLink>
       </div>
     </div>
-    <div 
-      class="user" 
+    <div
+      class="user"
       @click="toAbout">
-      <img 
-        :src="image" 
+      <img
+        :src="image"
         :alt="name" />
     </div>
   </header>
@@ -28,7 +28,6 @@
 <script>
 import { mapState } from 'vuex'
 import Logo from '~/components/Logo'
-
 export default {
   components: {
     Logo
@@ -43,7 +42,7 @@ export default {
         {
           name: 'Movie',
           href: '/movie/tt4520988',
-          path: /^\/movie/  // '/movie'
+          path: /^\/movie/
         },
         {
           name: 'About',
@@ -60,12 +59,12 @@ export default {
   },
   methods: {
     isMatch(path) {
-      if (!path) return false;
-      // console.log(this.$route)
+      if (!path) return false
+      console.log(this.$route)
       return path.test(this.$route.fullPath)
     },
     toAbout() {
-      this.$router.push('/about');
+      this.$router.push('/about')
     }
   }
 }
@@ -74,9 +73,9 @@ export default {
 <style lang="scss" scoped>
 header {
   height: 70px;
-  padding: 0 40px;
   display: flex;
   align-items: center;
+  padding: 0 40px;
   position: relative;
   .logo {
     margin-right: 40px;
@@ -94,7 +93,7 @@ header {
     bottom: 0;
     right: 40px;
     margin: auto;
-    transition: .4;
+    transition: .4s;
     &:hover {
       background-color: darken($gray-200, 10%);
     }
