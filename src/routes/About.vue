@@ -54,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 .about {
   text-align: center;
+  background-image: url('https://i.postimg.cc/3NXgNktj/Kakao-Talk-20210826-105809011.jpg');
   .photo {
     width: 250px;
     height: 250px;
@@ -63,6 +64,7 @@ export default {
     box-sizing: border-box;
     background-color: $gray-200;
     position: relative;
+    overflow: hidden;
     img {
       width: 100%;
     }
